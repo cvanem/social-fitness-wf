@@ -1,14 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import React, {
-  lazy,
-  Suspense,
-  Fragment
-} from 'react';
-import {
-  Switch,
-  Redirect,
-  Route
-} from 'react-router-dom';
+import React, { lazy, Suspense, Fragment } from 'react';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import DocsLayout from 'src/layouts/DocsLayout';
 import MainLayout from 'src/layouts/MainLayout';
@@ -20,16 +12,16 @@ const routesConfig = [
     exact: true,
     path: '/',
     component: () => <Redirect to="/app/dashboard" />
-  },  
+  },
   {
-    path: '/app',    
+    path: '/app',
     layout: DashboardLayout,
     routes: [
       {
         exact: true,
         path: '/app',
         component: () => <Redirect to="/app/dashboard" />
-      },    
+      },
       {
         exact: true,
         path: '/app/table',
@@ -43,8 +35,10 @@ const routesConfig = [
       {
         exact: true,
         path: '/app/dashboard',
-        component: lazy(() => import('src/views/reports/DashboardAlternativeView'))
-      },      
+        component: lazy(() =>
+          import('src/views/reports/DashboardAlternativeView')
+        )
+      },
       {
         component: () => <Redirect to="/app/placeholder" />
       }
@@ -125,7 +119,7 @@ const routesConfig = [
         component: lazy(() => import('src/views/docs/ChangelogView'))
       },
       {
-        component: () => <Redirect to="/404" />
+        component: () => <Redirect to="/app/dashboard" />
       }
     ]
   },
@@ -136,48 +130,51 @@ const routesConfig = [
       {
         exact: true,
         path: '/home',
-        component: HomeView
+        component: () => <Redirect to="/app/dashboard" />
       },
       {
         exact: true,
         path: '/pricing',
-        component: lazy(() => import('src/views/pages/PricingView'))
+        component: () => <Redirect to="/app/dashboard" />
       },
       {
-        component: () => <Redirect to="/404" />
+        component: () => <Redirect to="/app/dashboard" />
       }
     ]
   }
 ];
 
-const renderRoutes = (routes) => (routes ? (
-  <Suspense fallback={<LoadingScreen />}>
-    <Switch>
-      {routes.map((route, i) => {
-        const Guard = route.guard || Fragment;
-        const Layout = route.layout || Fragment;
-        const Component = route.component;
+const renderRoutes = routes =>
+  routes ? (
+    <Suspense fallback={<LoadingScreen />}>
+      <Switch>
+        {routes.map((route, i) => {
+          const Guard = route.guard || Fragment;
+          const Layout = route.layout || Fragment;
+          const Component = route.component;
 
-        return (
-          <Route
-            key={i}
-            path={route.path}
-            exact={route.exact}
-            render={(props) => (
-              <Guard>
-                <Layout>
-                  {route.routes
-                    ? renderRoutes(route.routes)
-                    : <Component {...props} />}
-                </Layout>
-              </Guard>
-            )}
-          />
-        );
-      })}
-    </Switch>
-  </Suspense>
-) : null);
+          return (
+            <Route
+              key={i}
+              path={route.path}
+              exact={route.exact}
+              render={props => (
+                <Guard>
+                  <Layout>
+                    {route.routes ? (
+                      renderRoutes(route.routes)
+                    ) : (
+                      <Component {...props} />
+                    )}
+                  </Layout>
+                </Guard>
+              )}
+            />
+          );
+        })}
+      </Switch>
+    </Suspense>
+  ) : null;
 
 function Routes() {
   return renderRoutes(routesConfig);

@@ -1,0 +1,2 @@
+(this["webpackJsonpsocial-fitness-wf"]=this["webpackJsonpsocial-fitness-wf"]||[]).push([[20],{1159:function(e,n,t){"use strict";t.r(n);var a=t(0),l=t.n(a),s=t(328),c=Object(a.lazy)((function(){return t.e(7).then(t.bind(null,1131))}));n.default=function(){return l.a.createElement(s.a,{title:"Analytics"},l.a.createElement(a.Suspense,{fallback:null},l.a.createElement(c,null)))}}}]);
+//# sourceMappingURL=20.53d6863b.chunk.js.map

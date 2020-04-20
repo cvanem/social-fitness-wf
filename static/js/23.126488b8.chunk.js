@@ -1,0 +1,2 @@
+(this["webpackJsonpsocial-fitness-wf"]=this["webpackJsonpsocial-fitness-wf"]||[]).push([[23],{1166:function(e,n,t){"use strict";t.r(n);var a=t(0),l=t.n(a),s=t(328),c=Object(a.lazy)((function(){return t.e(10).then(t.bind(null,1138))}));n.default=function(){return l.a.createElement(s.a,{title:"Changelog"},l.a.createElement(a.Suspense,{fallback:null},l.a.createElement(c,null)))}}}]);
+//# sourceMappingURL=23.126488b8.chunk.js.map

@@ -1,0 +1,2 @@
+(this["webpackJsonpsocial-fitness-wf"]=this["webpackJsonpsocial-fitness-wf"]||[]).push([[21],{1158:function(e,n,t){"use strict";t.r(n);var l=t(0),a=t.n(l),s=t(328),c=Object(l.lazy)((function(){return t.e(8).then(t.bind(null,1130))}));n.default=function(){return a.a.createElement(s.a,{title:"Api Calls"},a.a.createElement(l.Suspense,{fallback:null},a.a.createElement(c,null)))}}}]);
+//# sourceMappingURL=21.489e9bf5.chunk.js.map

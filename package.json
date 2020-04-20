@@ -5,12 +5,14 @@
   "licence": "UNLICENSED",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://cvanem.github.io/social-fitness-wf/",
   "scripts": {
     "lint": "eslint ./src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

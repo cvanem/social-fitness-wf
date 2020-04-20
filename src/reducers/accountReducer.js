@@ -1,0 +1,82 @@
+/* eslint-disable no-param-reassign */
+import produce from 'immer';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  SILENT_LOGIN,
+  UPDATE_PROFILE
+} from 'src/actions/accountActions';
+
+const initialState = {  
+  user: {
+    id: '5e86809283e28b96d2d38537',
+    bio: 'SMASH SAN JOSE',
+    canHire: false,
+    country: 'USA',
+    email: 'eli@gmial.com',
+    username: 'admin',
+    password: 'admin',
+    firstName: 'ELI',
+    isPublic: true,
+    lastName: 'SANCHEZ',
+    phone: '+40 777666555',
+    role: 'admin',
+    state: 'New York',
+    timezone: '4:32PM (GMT-4)'
+  }
+};
+
+const accountReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGIN_REQUEST: {
+      return produce(state, draft => {
+        // Ensure we clear current session
+        draft.user = null;
+      });
+    }
+
+    case LOGIN_SUCCESS: {
+      const { user } = action.payload;
+
+      return produce(state, draft => {
+        draft.user = user;
+      });
+    }
+
+    case LOGIN_FAILURE: {
+      return produce(state, () => {
+        // Maybe store error
+      });
+    }
+
+    case LOGOUT: {
+      return produce(state, draft => {
+        draft.user = null;
+      });
+    }
+
+    case SILENT_LOGIN: {
+      const { user } = action.payload;
+
+      return produce(state, draft => {
+        draft.user = user;
+      });
+    }
+
+    case UPDATE_PROFILE: {
+      const { user } = action.payload;
+
+      return produce(state, draft => {
+        draft.user = user;
+      });
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+export default accountReducer;
